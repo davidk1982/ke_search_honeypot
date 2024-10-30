@@ -1,0 +1,8 @@
+
+plugin.tx_kesearch_pi1 {
+    view {
+        partialRootPaths {
+            1000 = {$plugin.ke_search_honeypot.view.partialRootPath}
+        }
+    }
+}

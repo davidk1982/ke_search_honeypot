@@ -1,0 +1,5 @@
+plugin.ke_search_honeypot {
+    view {
+        partialRootPath = EXT:ke_search_honeypot/Resources/Private/Partials/
+    }
+}
