@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Extension Manager/Repository config file for ext "kesearch_honeypot".
+ * Extension Manager/Repository config file for ext "ke_search_honeypot".
  */
 $EM_CONF[$_EXTKEY] = [
     'title' => 'KeSearch HoneyPot',
     'description' => '',
-    'category' => 'templates',
+    'category' => 'plugin',
     'constraints' => [
         'depends' => [
             'typo3' => '10.4.0-11.9.99',
@@ -26,5 +26,5 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'David Kohr',
     'author_email' => 't3@davidkohr.de',
     'author_company' => 'David Kohr',
-    'version' => '11.5.0',
+    'version' => '11.5.1',
 ];
