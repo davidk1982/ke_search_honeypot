@@ -21,14 +21,15 @@ class HoneypotMiddleware implements MiddlewareInterface, LoggerAwareInterface {
     use LoggerAwareTrait;
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface {
-        
-        $queryParams = $request->getQueryParams();       
+
+        $queryParams = $request->getQueryParams();
+        $formSubmited = $queryParams["tx_kesearch_pi1"] ?? null;
         $honeypot = $queryParams["tx_kesearch_pi1"]["__hp"] ?? null;
-        
-        if(!empty($honeypot)) {            
+
+        if ((isset($formSubmited) && (!isset($honeypot)) || !empty($honeypot))) {
             return new Response('403');
         }
-        
+
         return $handler->handle($request);
     }
 }
