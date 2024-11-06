@@ -10,7 +10,7 @@ This TYPO3 Extension is free to use.
 ## Install
 
 Quick guide:
-- Just install this extension - e.g. `composer require david-kohr/ke-search-honeypot`
+- Just install this extension - e.g. `composer require davidkohr/ke-search-honeypot`
 - Clear caches
 ## Usage
 
