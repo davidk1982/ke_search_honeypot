@@ -27,7 +27,7 @@ class HoneypotMiddleware implements MiddlewareInterface, LoggerAwareInterface {
         $honeypot = $queryParams["tx_kesearch_pi1"]["__hp"] ?? null;
 
         if ((isset($formSubmited) && (!isset($honeypot)) || !empty($honeypot))) {
-            return new Response('403');
+            return new Response(403);
         }
 
         return $handler->handle($request);
