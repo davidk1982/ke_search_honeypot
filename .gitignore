@@ -1,0 +1,36 @@
+# Environment files
+.env
+.env.*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+Thumbs.db
+Desktop.ini
+
+# TYPO3
+.Build/
+Resources/Public/Css/
+Resources/Public/JavaScript/Build/
+
+# Documentation
+Documentation-GENERATED-temp/
+
+# Composer
+vendor/
+composer.lock
+
+# Node
+node_modules/
+package-lock.json
