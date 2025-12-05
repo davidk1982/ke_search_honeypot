@@ -5,11 +5,11 @@
  */
 $EM_CONF[$_EXTKEY] = [
     'title' => 'KeSearch HoneyPot',
-    'description' => '',
+    'description' => 'Spam protection for ke_search using honeypot technique. Adds an invisible form field to catch bots.',
     'category' => 'plugin',
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.0-11.9.99',
+            'typo3' => '11.5.0-14.99.99',
         ],
         'conflicts' => [
         ],
@@ -26,5 +26,5 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'David Kohr',
     'author_email' => 't3@davidkohr.de',
     'author_company' => 'David Kohr',
-    'version' => '11.5.3',
+    'version' => '13.4.0',
 ];

@@ -10,7 +10,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use GuzzleHttp\Psr7\Response;
+use TYPO3\CMS\Core\Http\Response;
 
 /**
  * Class HoneypotMiddleware

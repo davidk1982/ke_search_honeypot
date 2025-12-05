@@ -1,0 +1,93 @@
+.. include:: /Includes.rst.txt
+
+.. _configuration:
+
+=============
+Configuration
+=============
+
+.. _typoscript:
+
+TypoScript Configuration
+========================
+
+The extension registers a Fluid Partial path for ke_search:
+
+.. code-block:: typoscript
+
+   plugin.tx_kesearch_pi1 {
+       view {
+           partialRootPaths {
+               1000 = EXT:ke_search_honeypot/Resources/Private/Partials/
+           }
+       }
+   }
+
+This makes the `honeypot` partial available in your ke_search templates.
+
+.. _template:
+
+Template Integration
+====================
+
+Add the partial to your search form template:
+
+.. code-block:: html
+
+   <f:render partial="honeypot" />
+
+The partial renders:
+
+.. code-block:: html
+
+   <div style="margin-left: -99999px; position: absolute;">
+       <label for="kesearch_hp">Diese Feld nicht ausfüllen!</label>
+       <input autocomplete="new-kesearch-hp" tabindex="-1" 
+              type="text" name="tx_kesearch_pi1[__hp]" value="" />
+   </div>
+
+.. _middleware:
+
+Middleware
+==========
+
+The extension uses a PSR-15 middleware to check search requests.
+
+The middleware checks if:
+
+1. A ke_search form was submitted (`tx_kesearch_pi1` parameter exists)
+2. The honeypot field (`tx_kesearch_pi1[__hp]`) is missing or filled
+
+If a bot fills the honeypot field, the request is rejected with **403 Forbidden**.
+
+The middleware is automatically registered in `Configuration/RequestMiddlewares.php` - 
+no manual configuration needed.
+
+.. _customization:
+
+Customization
+=============
+
+Custom Honeypot Field Name
+---------------------------
+
+If you want to use a different field name, override the partial in your own 
+extension or template:
+
+.. code-block:: html
+
+   <!-- Your own Partials/honeypot.html -->
+   <div style="margin-left: -99999px; position: absolute;">
+       <input type="text" name="tx_kesearch_pi1[my_custom_field]" value="" />
+   </div>
+
+Then update the middleware check accordingly.
+
+Custom Styling
+---------------
+
+The default partial uses `position: absolute` with negative margin. You can 
+override this with your own CSS or by creating a custom partial.
+
+**Note:** Don't use `display: none` as some bots detect this. Use positioning 
+off-screen instead.

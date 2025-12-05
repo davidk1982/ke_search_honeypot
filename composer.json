@@ -1,13 +1,26 @@
 {
     "name": "davidkohr/ke-search-honeypot",
     "type": "typo3-cms-extension",
-    "description": "",
+    "description": "Spam protection for ke_search using honeypot technique. Adds an invisible form field to catch bots.",
     "homepage": "https://davidkohr.de",
     "license": ["GPL-2.0-or-later"],
-    "keywords": ["TYPO3 CMS"],
+    "keywords": ["TYPO3 CMS", "ke_search", "honeypot", "spam protection", "security"],
+    "authors": [
+        {
+            "name": "David Kohr",
+            "email": "t3@davidkohr.de",
+            "homepage": "https://davidkohr.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/davidkohr/ke_search_honeypot/issues",
+        "source": "https://github.com/davidkohr/ke_search_honeypot",
+        "docs": "https://docs.typo3.org/p/davidkohr/ke-search-honeypot/main/en-us/"
+    },
     "require": {
-        "php": "^7.4 || ^8.0",
-        "typo3/cms-core": "^10.4 || ^11.5",
+        "php": "^8.1 || ^8.2 || ^8.3 || ^8.4",
+        "typo3/cms-core": "^11.5 || ^12.4 || ^13.4 || ^14.0",
         "tpwd/ke_search": ">=4.0"
     },
     "autoload": {
@@ -20,11 +33,26 @@
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "ke_search_honeypot"
+            "extension-key": "ke_search_honeypot",
+            "web-dir": ".Build/public"
         }
     },
+    "config": {
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin",
+        "allow-plugins": {
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "[ -d .Build/public/_assets ] || mkdir -p .Build/public/typo3conf/ext/",
+            "[ -d .Build/public/_assets ] || [ -L .Build/public/typo3conf/ext/ke_search_honeypot ] || ln -snvf ../../../../. .Build/public/typo3conf/ext/ke_search_honeypot"
+        ]
+    },
     "suggests": {
-        "ke_search": "",
-        "ke_search_premium": ""
+        "ke_search": "Search extension for TYPO3",
+        "ke_search_premium": "Premium features for ke_search"
     }
 }
