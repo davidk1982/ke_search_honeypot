@@ -43,11 +43,83 @@ Activation
 After installation:
 
 1. Clear all TYPO3 caches
-2. Add the honeypot partial to your ke_search form template:
+2. Add the honeypot partial to your ke_search form template
+3. Configure the RouteEnhancer (see below)
+
+.. _quick-start:
+
+Quick Start
+===========
+
+1. Add Partial to Template
+---------------------------
+
+Edit your ke_search form template and add:
 
 .. code-block:: html
 
    <f:render partial="honeypot" />
+
+Example complete search form:
+
+.. code-block:: html
+
+   <f:form name="searchForm" method="get" 
+           pageUid="{searchPage}" 
+           id="kesearch-form">
+       
+       <f:form.textfield 
+           name="tx_kesearch_pi1[sword]" 
+           value="{searchParams.sword}" 
+           placeholder="Suchbegriff eingeben..." />
+       
+       <f:render partial="honeypot" />
+       
+       <f:form.submit value="Suchen" />
+   </f:form>
+
+2. Configure RouteEnhancer
+---------------------------
+
+Add to `config/sites/<your-site>/config.yaml`:
+
+.. code-block:: yaml
+
+   routeEnhancers:
+     KeSearch:
+       type: Plugin
+       namespace: tx_kesearch_pi1
+       routePath: '/{sortByField}/{sortByDir}/{resetFilters}/{page}/{sword}/{__hp}'
+       _arguments:
+         sortByField: sortByField
+         sortByDir: sortByDir
+         resetFilters: resetFilters
+         page: page
+         sword: sword
+       defaults:
+         __hp: ''
+         sortByField: ''
+         sortByDir: ''
+         resetFilters: ''
+         page: '0'
+         sword: ''
+
+3. Clear Caches
+---------------
+
+.. code-block:: bash
+
+   # Clear all caches
+   vendor/bin/typo3 cache:flush
+   
+   # Or in Backend: Admin Tools > Maintenance > Flush TYPO3 and PHP Cache
+
+4. Test
+-------
+
+1. Search for a term on your search page
+2. Check that the URL contains the empty honeypot parameter: `/search/.../searchterm//`
+3. Navigate through result pages - URLs should maintain the `//` at the end
 
 **Example:**
 
