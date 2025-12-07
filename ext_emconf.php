@@ -5,7 +5,7 @@
  */
 $EM_CONF[$_EXTKEY] = [
     'title' => 'KeSearch HoneyPot',
-    'description' => 'Spam protection for ke_search using honeypot technique. Adds an invisible form field to catch bots.',
+    'description' => 'Spam protection for ke_search using honeypot technique. Adds an invisible form field to catch bots. Install via Composer: composer require davidkohr/ke-search-honeypot',
     'category' => 'plugin',
     'constraints' => [
         'depends' => [
@@ -26,5 +26,5 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'David Kohr',
     'author_email' => 't3@davidkohr.de',
     'author_company' => 'David Kohr',
-    'version' => '14.0.2',
+    'version' => '14.0.3',
 ];
